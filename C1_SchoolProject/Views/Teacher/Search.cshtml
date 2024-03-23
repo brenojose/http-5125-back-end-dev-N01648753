@@ -1,0 +1,27 @@
+﻿@model IEnumerable<C1_SchoolProject.Models.Teacher>
+@{
+    ViewBag.Title = "Search"; // Sets the title of the page using ViewBag
+}
+
+<h2>Search Teachers</h2> 
+
+<form action="/Teacher/Search" method="get">
+    
+    Name: <input type="text" name="searchName" /> 
+    Hire Date: <input type="date" name="searchHireDate" /> 
+    Salary: <input type="number" step="0.01" name="searchSalary" /> 
+    <input type="submit" value="Search" /> 
+</form>
+
+<div id="results">
+    @if (Model != null) // Checks if the model is not null, indicating that search results are available
+    {
+        foreach (var teacher in Model) // Iterates over each teacher in the model
+        {
+            // Creates a link to a page showing more details about the teacher, displaying their first and last name
+            <div> 
+                <a href="/Teacher/Show/@teacher.TeacherId">@teacher.TeacherFname @teacher.TeacherLname</a> 
+            </div>
+        }
+    }
+</div>

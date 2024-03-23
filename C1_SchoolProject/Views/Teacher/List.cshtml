@@ -1,0 +1,22 @@
+﻿@model IEnumerable<C1_SchoolProject.Models.Teacher> // Specifies the model type for this view, which is an enumerable collection of Teacher objects.
+@{
+    ViewBag.Title = "List"; // Sets the title of the web page using the ViewBag dynamic property.
+}
+
+<h2>List</h2>
+<p>This page should be showing information about all teachers</p>
+
+<div id="containerlist">
+    <h2>List of Teachers</h2> 
+    @foreach (var teacher in Model) // Begins a loop through each teacher in the Model passed to the view.
+    {
+        // Each teacher is enclosed in a div with the classes 'listitem' and 'row', indicating it's a list item and uses Bootstrap's row class for layout.
+        // Uses a div with Bootstrap's grid class 'col-md-12', meaning this content will take up all 12 columns of the grid on medium devices and larger.
+        // Creates a link to the teacher's detail page using their ID, and displays the teacher's first and last name as the link text.
+        <div class="listitem row">
+            <div class="col-md-12">
+                <a href="/Teacher/Show/@teacher.TeacherId">@teacher.TeacherFname @teacher.TeacherLname</a> 
+            </div>
+        </div>
+    }
+</div>
