@@ -1,0 +1,16 @@
+﻿@model C1_SchoolProject.Models.Teacher
+@{
+
+    ViewBag.Title = "DeleteConfirm";
+}
+
+@* This heading asks the user to confirm if they really want to delete the specified teacher, providing a safeguard against accidental deletions. *@
+<h2>Are you sure you want to delete this teacher?</h2>
+@* Displays the first name of the teacher to confirm the identity of the teacher being deleted, helping prevent user errors by ensuring the correct individual is targeted. *@
+<p>@Model.TeacherFname</p>
+
+@* Creates a form that sends a POST request to the "/Teacher/Delete/{TeacherId}" route when the "Confirm Delete" button is pressed. This action initiates the deletion process for the teacher identified by TeacherId. *@
+<form action="/Teacher/Delete/@Model.TeacherId" method="POST">
+    @* This button allows the user to confirm the deletion. Once clicked, it triggers the form submission, thereby sending the delete command for the specified teacher. *@
+    <input type="submit" value="Confirm Delete" />
+</form>

@@ -1,0 +1,73 @@
+﻿@model IEnumerable<C1_SchoolProject.Models.Teacher>
+@{
+
+    ViewBag.Title = "Search";
+}
+
+<h2>Search Teachers</h2>
+
+@* Form for searching teachers by name, hire date, or salary. The form data is sent via GET request to the "/Teacher/Search" action. *@
+<form action="/Teacher/Search" method="get">
+    Name: <input type="text" name="searchName" />
+    Hire Date: <input type="date" name="searchHireDate" />
+    Salary: <input type="number" step="0.10" name="searchSalary" placeholder="Hourly wage" />
+    <input type="submit" value="Search" />
+</form>
+
+<div id="results">
+    @* If the Model is not null, it indicates that search results are available and iterates over each teacher to display them. *@
+    @if (Model != null)
+    {
+        foreach (var teacher in Model)
+        {
+            // Creates a clickable link for each teacher, leading to their detail page, and displaying their name.
+            <div>
+                <a href="/Teacher/Show/@teacher.TeacherId">@teacher.TeacherFname @teacher.TeacherLname</a>
+            </div>
+        }
+    }
+</div>
+
+<div>
+    @* Styling for the last div and input placeholders within the form for better visual presentation. *@
+    <style>
+        div:last-child {
+            padding: 20px;
+        }
+
+        input::placeholder {
+            color: lightgrey;
+        }
+    </style>
+</div>
+
+@* Provides a link to add a new teacher, enhancing navigation and user experience. *@
+<a href="@Url.Action("New", "Teacher")">Add Teacher</a>
+
+@* JavaScript function to add an example teacher via an API call. This script adds my actual professor, Christine, with predefined details. *@
+<script>
+    function addTeacher() {
+        var xhr = new XMLHttpRequest();
+        var url = "/api/TeacherData/AddTeacher"; // API endpoint for adding a teacher
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log("Teacher added successfully");
+                // Reloads the page to reflect the addition of the new teacher.
+                window.location.reload(true);
+            }
+        };
+        var data = JSON.stringify({
+            TeacherFname: "Christine",
+            TeacherLname: "Bittle",
+            EmployeeNumber: "123456",
+            HireDate: "2021-01-01",
+            Salary: 150
+        });
+        xhr.send(data);
+    }
+</script>
+
+@* Button that triggers the addTeacher function on click, demonstrating how to programmatically add a teacher record. *@
+<button onclick="addTeacher()">Add Teacher example!</button>
