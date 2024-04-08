@@ -1,0 +1,77 @@
+﻿/* Reset some basic elements */
+/* Reset margins, padding, and remove text decoration and list style */
+body, h1, h2, h3, p, ul, li, a {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+/* Basic body styles */
+/* Set font family, line height, font size, and background and text color */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.6;
+    font-size: 16px;
+    background: #F3EFFF; /* Light purple background */
+    color: #5D5475; /* Dark purple text */
+}
+
+/* Sidebar styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background: #A294C7; /* Purple background */
+    padding: 20px;
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+    .sidebar h2 {
+        color: #fff; /* White text */
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+.sidebar-link {
+    display: block;
+    color: #3D2C56; /* Dark purple text */
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.3s;
+    margin-bottom: 10px;
+}
+
+    .sidebar-link:hover {
+        background: #7E7DFF; /* Light purple background on hover */
+        color: #fff; /* White text on hover */
+        padding-left: 20px; /* Add padding on hover */
+    }
+
+/* Main content styles */
+.main-content {
+    padding: 20px;
+}
+
+/* Container styles */
+.container {
+    background: #fff; /* White background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Body content container styles */
+.container.body-content {
+    padding-left: 20px;
+    padding-right: 20px;
+}

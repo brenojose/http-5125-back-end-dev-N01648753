@@ -1,0 +1,54 @@
+﻿@{
+
+    ViewBag.Title = "New Teacher";
+}
+
+<h2>Add New Teacher</h2>
+
+@* The form for adding a new teacher. On submission, it posts the data to the "/Teacher/Create" action. *@
+<form method="post" action="/Teacher/Create">
+    <div>
+        @* Label and input field for the teacher's first name. The 'required' attribute ensures the field must be filled out before submission. *@
+        <label for="TeacherFName">First Name:</label>
+        <input type="text" id="TeacherFName" name="TeacherFName" required />
+    </div>
+    <div>
+        @* Label and input field for the teacher's last name. Similar to the first name, it's a required field. *@
+        <label for="TeacherLName">Last Name:</label>
+        <input type="text" id="TeacherLName" name="TeacherLName" required />
+    </div>
+    <div>
+        @* Input for the employee number, marked as required to ensure each teacher has a unique identifier. *@
+        <label for="EmployeeNumber">Employee Number:</label>
+        <input type="text" id="EmployeeNumber" name="EmployeeNumber" required />
+    </div>
+    <div>
+        @* Input for the hire date with a 'date' type, allowing for easy calendar selection. This field is also required. *@
+        <label for="HireDate">Hire Date:</label>
+        <input type="date" id="HireDate" name="HireDate" required />
+    </div>
+    <div>
+        @* Salary input is a number field that accepts decimal values for precise salary information. The placeholder provides a hint on what to enter. *@
+        <label for="Salary">Salary:</label>
+        <input type="number" step="0.01" id="Salary" placeholder="Annual salary" name="Salary" required />
+    </div>
+    @* Styling applied to the last input field's container for visual appeal and alignment. *@
+    <div>
+        <style>
+            div:last-child {
+                margin-top: 80px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            input::placeholder {
+                color: lightgrey;
+            }
+        </style>
+    </div>
+    <div>
+        @* Submit button for the form. When clicked, it triggers the form submission to create a new teacher record. *@
+        <input type="submit" value="Add Teacher" />
+    </div>
+</form>

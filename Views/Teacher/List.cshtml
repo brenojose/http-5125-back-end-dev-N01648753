@@ -1,0 +1,35 @@
+﻿@model IEnumerable<C1_SchoolProject.Models.Teacher>
+@{
+
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+<p>This page is displaying information about all teachers</p>
+<div id="containerlist">
+    <h2>List of Teachers</h2>
+    @* Iterates over each teacher in the Model, displaying their name in a list format. *@
+    @foreach (var teacher in Model)
+    {
+        <div class="listitem row">
+            <div class="col-md-12">
+                @* Creates a hyperlink for each teacher that leads to their detailed view. The link text is the teacher's full name. *@
+                <a href="/Teacher/Show/@teacher.TeacherId">@teacher.TeacherFname @teacher.TeacherLname</a>
+            </div>
+        </div>
+    }
+</div>
+<div class="spacing">
+    @* Provides a link to the page for adding a new teacher. *@
+    <a href="/Teacher/New">New Teacher</a>
+</div>
+
+@* Styling for the 'spacing' class to ensure visual appeal and proper spacing on the page. *@
+<style>
+    .spacing {
+        margin-top: 80px; /* Adds top margin for spacing */
+        display: flex; /* Uses Flexbox for center alignment */
+        justify-content: center; /* Centers content horizontally within the container */
+        align-items: center; /* Centers content vertically within the container */
+    }
+</style>
