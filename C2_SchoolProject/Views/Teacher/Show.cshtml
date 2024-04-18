@@ -1,29 +1,45 @@
 ﻿@model C1_SchoolProject.Models.Teacher
-@{
 
+@{
     ViewBag.Title = "Show";
 }
 
-@* Provides a link back to the search page, allowing users to easily navigate back to the list of teachers. The class 'navlink' is used for styling this link. *@
 <a class="navlink" href="/Teacher/Search">Back To Teachers</a>
 
-@* Container for displaying detailed information about the teacher. Each piece of information is presented in its own paragraph with a bold label for clarity. *@
 <div id="containershow">
-    <p><b>ID: </b> @Model.TeacherId</p> @* Displays the teacher's ID. *@
-    <p><b>Name: </b> @Model.TeacherFname @Model.TeacherLname</p> @* Shows the teacher's full name by concatenating the first and last names. *@
-    <p><b>Employee Number: </b> @Model.EmployeeNumber</p> @* Shows the teacher's employee number. *@
-    <p><b>Hire Date: </b> @Model.HireDate.ToShortDateString()</p> @* Displays the hire date, converting it to a short date string for readability. *@
-    <p><b>Salary: </b> @Model.Salary</p> @* Shows the teacher's salary. *@
+    <p><b>ID: </b> @Model.TeacherId</p>
+    <p><b>Name: </b> @Model.TeacherFname @Model.TeacherLname</p>
+    <p><b>Employee Number: </b> @Model.EmployeeNumber</p>
+    <p><b>Hire Date: </b> @Model.HireDate.ToShortDateString()</p>
+    <p><b>Salary: </b> @Model.Salary</p>
 </div>
 
-@* Provides a link to the DeleteConfirm action, allowing users to initiate the deletion process for this teacher. The link is styled by the 'deleting' class. *@
+<!-- Update button -->
+<div class="updating">
+    @Html.ActionLink("Update", "Update", new { id = Model.TeacherId }, new { @class = "btn btn-default" })
+</div>
+
 <div class="deleting">
     <a href="/Teacher/DeleteConfirm/@Model.TeacherId">Delete</a>
 </div>
 
-@* Styles the 'deleting' div to ensure the delete link is visually distinct and appropriately spaced from the rest of the content. *@
 <style>
-    .deleting {
-        margin-top: 80px; /* Adds spacing above the delete link for better visual separation */
+    .deleting, .updating {
+        margin-top: 20px; /* Adds spacing above the links for visual separation */
+        display: block; /* Ensures each link/button is on a new line */
     }
+
+    .btn {
+        padding: 10px 15px;
+        background-color: #4B499C;
+        color: white;
+        text-align: center;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn:hover {
+            background-color: #3732a3;
+        }
 </style>

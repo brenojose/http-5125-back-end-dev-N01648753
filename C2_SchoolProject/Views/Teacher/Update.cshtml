@@ -1,0 +1,79 @@
+﻿@model C1_SchoolProject.Models.Teacher
+
+@{
+    ViewBag.Title = "Update Teacher";
+}
+
+<h2>Update Teacher Information</h2>
+
+@using (Html.BeginForm("Update", "Teacher", FormMethod.Post, new { @id = "updateTeacherForm", @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.TeacherId)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TeacherFname, new { @class = "control-label" })
+        @Html.EditorFor(model => model.TeacherFname, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.TeacherFname)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TeacherLname, new { @class = "control-label" })
+        @Html.EditorFor(model => model.TeacherLname, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.TeacherLname)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EmployeeNumber, new { @class = "control-label" })
+        @Html.EditorFor(model => model.EmployeeNumber, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.EmployeeNumber)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.HireDate, new { @class = "control-label" })
+        @Html.EditorFor(model => model.HireDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+        @Html.ValidationMessageFor(model => model.HireDate)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Salary, new { @class = "control-label" })
+        @Html.EditorFor(model => model.Salary, new { htmlAttributes = new { @class = "form-control", type = "number", step = "0.01" } })
+        @Html.ValidationMessageFor(model => model.Salary)
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Update Teacher" class="btn btn-primary" />
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+            var updateForm = document.getElementById("updateTeacherForm");
+            updateForm.addEventListener("submit", function (event) {
+                var teacherFname = document.getElementById("TeacherFname").value;
+                var teacherLname = document.getElementById("TeacherLname").value;
+                var salary = document.getElementById("Salary").value;
+
+                var errorMsg = "";
+                if (!teacherFname) {
+                    errorMsg += "First name is required.\n";
+                }
+                if (!teacherLname) {
+                    errorMsg += "Last name is required.\n";
+                }
+                if (!salary || isNaN(salary) || salary <= 0) {
+                    errorMsg += "Valid salary is required.\n";
+                }
+
+                if (errorMsg) {
+                    event.preventDefault(); // Prevent form submission
+                    alert(errorMsg);
+                }
+                // If there are no errors, the form will be submitted
+            });
+        });
+    </script>
+}
