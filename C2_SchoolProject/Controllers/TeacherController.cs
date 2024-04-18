@@ -142,5 +142,34 @@ namespace C1_SchoolProject.Controllers
             // Redirects to the List action to show the updated list of teachers after deletion.
             return RedirectToAction("List");
         }
+
+        // GET: Teacher/Update/5
+        public ActionResult Update(int id)
+        {
+            TeacherDataController dataController = new TeacherDataController();
+            Teacher teacher = dataController.FindTeacher(id);
+            if (teacher != null)
+            {
+                return View(teacher);
+            }
+            else
+            {
+                return new HttpNotFoundResult(); // or redirect to another page
+            }
+        }
+
+        // POST: Teacher/Update
+        [HttpPost]
+        public ActionResult Update(Teacher teacher)
+        {
+            if (ModelState.IsValid)
+            {
+                TeacherDataController controller = new TeacherDataController();
+                controller.UpdateTeacher(teacher); // Now correctly refers to the existing method
+                return RedirectToAction("List");
+            }
+            return View(teacher);
+        }
+
     }
 }

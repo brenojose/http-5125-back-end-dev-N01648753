@@ -8,6 +8,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Web.Http;
 using C1_SchoolProject.Models;
 using MySql.Data.MySqlClient;
+using System.Web.Http.Description;
 
 namespace C1_SchoolProject.Controllers
 {
@@ -231,6 +232,37 @@ namespace C1_SchoolProject.Controllers
                 Conn.Close();
                 return Ok();
             }
+        }
+        public IHttpActionResult UpdateTeacher(Teacher updatedTeacher)
+        {
+
+            using (MySqlConnection Conn = School.AccessDatabase())
+            {
+                Conn.Open();
+                string query = @"
+            UPDATE Teachers
+            SET
+                TeacherFname = @TeacherFname,
+                TeacherLname = @TeacherLname,
+                EmployeeNumber = @EmployeeNumber,
+                HireDate = @HireDate,
+                Salary = @Salary
+            WHERE TeacherId = @TeacherId";
+
+                MySqlCommand Cmd = Conn.CreateCommand();
+                Cmd.CommandText = query;
+                Cmd.Parameters.AddWithValue("@TeacherId", updatedTeacher.TeacherId);
+                Cmd.Parameters.AddWithValue("@TeacherFname", updatedTeacher.TeacherFname);
+                Cmd.Parameters.AddWithValue("@TeacherLname", updatedTeacher.TeacherLname);
+                Cmd.Parameters.AddWithValue("@EmployeeNumber", updatedTeacher.EmployeeNumber);
+                Cmd.Parameters.AddWithValue("@HireDate", updatedTeacher.HireDate);
+                Cmd.Parameters.AddWithValue("@Salary", updatedTeacher.Salary);
+
+                Cmd.ExecuteNonQuery();
+                Conn.Close();
+                return Ok();
+            }
+
         }
     }
 }
