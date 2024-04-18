@@ -165,7 +165,7 @@ namespace C1_SchoolProject.Controllers
             if (ModelState.IsValid)
             {
                 TeacherDataController controller = new TeacherDataController();
-                controller.UpdateTeacher(teacher); // Now correctly refers to the existing method
+                controller.UpdateTeacher(teacher); // Correctly refers to the existing method
                 return RedirectToAction("List");
             }
             return View(teacher);
